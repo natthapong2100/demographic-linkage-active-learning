@@ -1,0 +1,4 @@
+conda create -n modal-env python=3.11
+conda activate modal-env
+pip install modAL
+pip install recordlinkage
