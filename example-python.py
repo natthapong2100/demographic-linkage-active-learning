@@ -1,39 +1,39 @@
-# %%
+
 import pandas as pd
 
-# %%
+
 df = pd.read_csv(r"../Data/3k/_1/corrupted/_1/birth_records.csv")
 
-# %%
+
 print(df.shape)
 
-# %%
+
 print(df.columns)
 
-# %%
+
 df.count()
 
-# %%
+
 df = df[:3000]
 
-# %%
+
 df.describe()
 
-# %%
+
 print(df.info())
 
-# %%
+
 # To check the total number of null values in each column
 print(df.isnull().sum())
 
-# %%
+
 #df['unique_id'] = range(1, len(df) + 1)able with your dataset (ensure it's a 2D array or DataFrame with numerical values). The principal_components will hold the result of PCA with the 
 original_df = df.copy()
 
-# %%
+
 original_df.iloc[0]['family']
 
-# %%
+
 #columns_to_keep = ['ID']
 columns_to_keep = ["sex","father's forename","father's surname",
 "father's occupation",
@@ -47,31 +47,31 @@ columns_to_keep = ["sex","father's forename","father's surname",
 #df = df.filter(rows_to_keep)
 df = df.loc[:, columns_to_keep].copy()
 
-# %%
+
 #df.drop(['ID'], axis=1, inplace=True)
 
-# %%
+
 df
 
-# %%
+
 original_df
 
-# %%
+
 print(original_df.iloc[2067]['family'])
 
-# %%
+
 cols = df.columns
 
-# %%
+
 for colname in cols:
     print(str(colname))
 
-# %% [markdown]
+
 # ## Indexing
 # ### Blocking
 # - MinHash
 
-# %%
+
 from datasketch import MinHash
 from datasketch import MinHashLSH
 
@@ -116,7 +116,7 @@ for idx, row in df.iterrows():
     blocks.append(block)
 
 
-# %%
+
 blocksK = blocks[0:15]
 for block in blocksK:
     print("Block:")
@@ -125,19 +125,19 @@ for block in blocksK:
     print("---")
 
 
-# %%
+
 print(len(blocks))
 
-# %%
+
 num = 0
 print(len(blocks[num]['similar_records']))
 # simillar records at block 0
 
-# %% [markdown]
+
 # ## Comparing metrics
 # - jaccard, jaro winkler, damerau_levenshtein_distance
 
-# %%
+
 def jaccard_similarity(str1, str2):
     set1 = set(str1)
     set2 = set(str2)
@@ -205,16 +205,16 @@ for block in blocks:
         inner_array.append(each_block_dict)
     outer_array.append(inner_array)
 
-# %%
+
 print(len(inner_array))
 
-# %%
+
 print(outer_array[0])
 
-# %%
+
 print(len(outer_array))
 
-# %%
+
 #creating a labelling array
 data_array=[]
 #label_array=[]
@@ -230,10 +230,10 @@ for block in blocks:
             label_array.append(0)
     data_array.append(label_array)
 
-# %%
+
 data_array[0]
 
-# %%
+
 result = []  # Store the counts for each subarray
 for subarray in data_array:
     count = 0
@@ -243,13 +243,13 @@ for subarray in data_array:
     result.append(count)
 
 
-# %%
+
 result
 
-# %%
+
 print(len(data_array))
 
-# %%
+
 #counting = 0
 #for elements in data_array:
 #    for each in elements:
@@ -257,14 +257,14 @@ print(len(data_array))
 #            counting+=1
 #print(counting)
 
-# %%
+
 zer = 0
 for element in result:
     if element == 0:
         zer += 1
 print(zer)
 
-# %%
+
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.model_selection import train_test_split
@@ -293,23 +293,23 @@ X = np.array(X)
 
 
 
-# %%
+
 X
 
-# %%
+
 # Convert data_array to the target labels (y)
 y = []
 for label_array in data_array:
     y.extend(label_array)
 y = np.array(y)
 
-# %%
+
 #checking the data weightage -- leakage
 unique_values, counts = np.unique(y, return_counts=True)
 for value, count in zip(unique_values, counts):
     print(f"{value}: {count}")
 
-# %%
+
 from modAL.models import ActiveLearner
 from modAL.uncertainty import uncertainty_sampling,entropy_sampling,margin_sampling
 from modAL.batch import uncertainty_batch_sampling
@@ -330,7 +330,7 @@ from imblearn.over_sampling import SMOTE
 
 
 
-# %%
+
 import numpy as np
 from sklearn.datasets import make_classification
 
@@ -345,10 +345,10 @@ from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 X_uncertainty_sampling = scaler.fit_transform(X_uncertainty_sampling)
 
-# %%
+
 X_uncertainty_sampling
 
-# %%
+
 
 
 # Generate synthetic imbalanced dataset
@@ -393,7 +393,7 @@ class_ratio_initial = 0
 print("Initial Training Set Class Imbalance Ratio:", class_ratio_initial)
 
 
-# %%
+
 from imblearn.over_sampling import SMOTE
 
 # Calculate desired minority-to-majority ratio (7:10)
@@ -427,10 +427,10 @@ desired_ratio = 1 / 10
 X_synthetic = X_initial
 y_synthetic = y_initial
 
-# %% [markdown]
+
 # ## RandomForest
 
-# %%
+
 
 
 # Create the base classifier
@@ -448,12 +448,12 @@ num_features = X_clean_us.shape[1]
 X_train_us = np.empty((0, num_features))  # Initialize an empty array with the expected number of features to store the training data
 y_train_us = []
 
-# %%
+
 print(y_us.shape[0])
 print()
 print(X_clean_us.shape[0])
 
-# %%
+
 import os
 import csv
 import random
@@ -481,10 +481,10 @@ log_filename = os.path.join(experiment_folder, "experiment_log_uncertainty.csv")
 
 
 
-# %% [markdown]
+
 # ## Active Learner and Metric Performance
 
-# %%
+
 # Open the log file for writing the experiment data
 with open(log_filename, "w", newline="") as log_file:
     log_writer = csv.writer(log_file)
@@ -640,7 +640,7 @@ with open(log_filename, "w", newline="") as log_file:
     print()
 
 
-# %%
+
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score, precision_recall_curve, auc
 
@@ -670,7 +670,7 @@ plt.savefig(plot_filename)
 
 plt.show()
 
-# %%
+
 import matplotlib.pyplot as plt
 from sklearn.metrics import precision_recall_curve, auc
 
@@ -700,7 +700,7 @@ plt.savefig(plot_filename)
 plt.show()
 
 
-# %%
+
 
 
 
