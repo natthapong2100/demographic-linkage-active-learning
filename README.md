@@ -1,8 +1,8 @@
 # Enhancing Demographic Linkage with Active Learning in Machine Learning  
 *MSc Dissertation Project*  
 
-**Author:** Natthapong Lueangphumhphitthaya \
-**Supervisor:**  Dr Özgür Akgün \
+**Author:** Natthapong Lueangphumphitthaya \
+**Supervisor:** Özgür Akgün \
 **School of Computer Science, University of St Andrews**  
 **July 8, 2025**  
 
@@ -28,14 +28,14 @@ This research is divided into **two main folders**, according to the data qualit
 - **Corrupted**
 
 Each folder contains:
-- **Default file** (minHashLSH threshold = `0.7`)  
-- **Experiment files** (discussed further in Experiments section)
+- **Default file** (threshold = `0.7`)  
+- **Experiment files** (discussed further below)
 
 
 ## Experiments
 
 ### 1. Different Threshold Levels
-- `Thresholds` in this program means the minHashLSH threshold in the Indexing (Blocking) step
+- `Thresholds` in this program means the LSH threshold in the Indexing (Blocking) step
 - Thresholds tested:  
   - `0.65`  
   - `0.70` (default)  
