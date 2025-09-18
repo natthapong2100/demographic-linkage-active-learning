@@ -1,7 +1,11 @@
-> **Note:**  
-> This code is not runnable since the actual implementation requires a large dataset (≈500k version) with ~1.3 million rows.
+# Enhancing Demographic Linkage with Active Learning in Machine Learning  
+*MSc Dissertation Project*  
 
----
+**Author:** Natthapong Lueangphumhphitthaya \
+**Supervisor:**  Dr Özgür Akgün \
+**School of Computer Science, University of St Andrews**  
+**July 8, 2025**  
+
 
 ## Data Flow of this program
 
@@ -15,7 +19,6 @@
     - (b) **Active Learning (AL)**  
     - (c) **Bayesian Optimisation (BO)**  
 
----
 
 ## Research Structure
 
@@ -28,8 +31,6 @@ Each folder contains:
 - **Default file** (minHashLSH threshold = `0.7`)  
 - **Experiment files** (discussed further in Experiments section)
 
----
-
 
 ## Experiments
 
@@ -41,26 +42,25 @@ Each folder contains:
   - `0.80`  
   - `0.90` → *best result across both models (PL, AL)*  
 
----
 
 ### 2. Random Training Data Selection
 - Randomly select subsets of the training data.  
 - Apply to **PL model**.
 
----
 
 ### 3. Random Pair Blocking
 - In the **Indexing (Blocking)** step, we use **random blocking** instead of standard blocking.
 
----
 
 ### 4. Random Sampling in AL
 - Use **Random Sampling** as query strategy, instead of default **Uncertainty Sampling**.  
 
----
 
 ### 5. Bayesian Optimisation
 - Start with **threshold = 0.9**.  
 - Implement **Bayesian Optimisation (BO)** to find optimal parameters.  
 - Train **Random Forest** with using those BO optimal parameters.  
 - Evaluate performance.
+
+> **Note:**  
+> This code is NOT runnable since the actual implementation requires a large dataset (≈500k version) with ~1.3 million rows.
