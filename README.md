@@ -3,8 +3,8 @@
 
 **Author:** Natthapong Lueangphumphitthaya \
 **Supervisor:** Özgür Akgün \
-School of Computer Science, University of St Andrews \
-July 8, 2025
+**School of Computer Science, University of St Andrews**
+**July 8, 2025**
 
 ## Project Description
 
