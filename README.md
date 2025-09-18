@@ -6,8 +6,17 @@
 **School of Computer Science, University of St Andrews**  
 **July 8, 2025**  
 
+## Project Description
 
-## Data Flow of this program
+- **Demographic linkage** refers to the procedure of identifying the same individual that appears on **multiple historical documents**.
+- Traditionally, this linkage involved manual searches for related family members, **birth records** and **death
+records** data, etc. It’s **difficult** for human expert to annotate every record to find the identity linkage.
+- **Active Learning** is utilised to overcome the high cost of manually labeling abundant historical documents and
+validated its efficiency by employing **Passive Learning** as a comparative benchmark.  
+- Additionally, **Bayesian Optimisation (BO)** was implemented for hyperparameter tuning, enhancing model performance under challenging data quality conditions.  
+
+
+## Data Flow of the Program
 
 1. **Data Exploration**  
 2. **Data Preprocessing**  
@@ -61,6 +70,11 @@ Each folder contains:
 - Implement **Bayesian Optimisation (BO)** to find optimal parameters.  
 - Train **Random Forest** with using those BO optimal parameters.  
 - Evaluate performance.
+
+## Result
+- **Clean dataset**: Passive Learning, Active Learning, and Bayesian Optimisation got the same F1 score at 0.9991.
+- **Corrupted dataset**: At F1 score, Bayesian Optimisation (0.9962) outperforms both Active Learning (0.9935) and Passive Learning (0.9945).
+
 
 > **Note:**  
 > This code is NOT runnable since the actual implementation requires a large dataset (≈500k version) with ~1.3 million rows.
